@@ -1,6 +1,7 @@
 *.ipynb
 .ipynb_checkpoints
-
+archive_reports.py
+*.DS_Store
 tmp/
 .cache/
 .pytest_cache/
