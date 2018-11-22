@@ -1,6 +1,6 @@
 *.ipynb
 .ipynb_checkpoints
-archive_reports.py
+archive_ifos_oil.py
 *.DS_Store
 tmp/
 .cache/
