@@ -34,12 +34,13 @@ def get_report_filename(url):
     return filename
 
 
-def validate_file(filename, epoch_age=0):
+def validate_file(filename, epoch_age=60 * 60 * 24 * 30):
     "Returns True if file exists and is younger than epoch_age"
     if os.path.isfile(filename):
         now = time.time()
         created = os.stat(filename).st_mtime
         file_age = now - created
+        print("file_age:{} <= epoch_age:{}".format(file_age, epoch_age))
         return file_age <= epoch_age
     else:
         return False
@@ -107,10 +108,10 @@ def test_get_report_filename():
 
 
 def test_archive_report():
-    archive_report(TEST_REPORT_URL, epoch_age=0, archive_dir=TEST_ARCHIVE_DIR)
+    archive_report(TEST_REPORT_URLS[0], epoch_age=0, archive_dir=TEST_ARCHIVE_DIR)
     assert os.path.isfile(TEST_ARCHIVE_DIR + TEST_FILENAME)
 
 
 def test_validate_file():
     assert validate_file(TEST_ARCHIVE_DIR + TEST_FILENAME)
-    assert not validate_file(TEST_ARCHIVE_DIR + TEST_FILENAME, epoch_age=60 * 60 * 24 * 365)
+    assert not validate_file(TEST_ARCHIVE_DIR + TEST_FILENAME, epoch_age=-1)
