@@ -1,6 +1,10 @@
+process*.py
 *.ipynb
 .ipynb_checkpoints
+*.DS_Store
 
+log/
+ifos_oil/
 tmp/
 .cache/
 .pytest_cache/
